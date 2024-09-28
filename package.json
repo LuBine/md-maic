@@ -2,8 +2,9 @@
   "name": "markdown-dialect-format",
   "displayName": "md-maic",
   "description": "markdown dialect format",
-  "version": "0.0.1",
-  "publishe":"ZoMaii",
+  "version": "0.0.2",
+  "publisher":"maictext-zomaii",
+  "icon": "logo.png",
   "engines": {
     "vscode": "^1.93.0"
   },
@@ -14,6 +15,10 @@
     "onCommand:extension.processText",
     "onLanguage:markdown"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zomaii/md-maic.git"
+  },
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
