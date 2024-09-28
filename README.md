@@ -2,6 +2,11 @@
 
 > VSCODE plugin! 
 
+
+While knowing that it's dangerous to make the source code public while the plugin is live, I'd still be happy if you'd vote for me on vscode!
+
+虽然知道在插件上线的同时公开源代码很危险，但如果您能为我在vscode上投个票我还是会很开心哒！
+
 > [GITHUB](https://github.com/zomaii/md-maic) || [Website](https://maicx.net) 
 
 Converting markdwon's special markup to HTML's element on the file.
