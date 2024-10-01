@@ -1,29 +1,27 @@
-# markdown dialect format
+# **markdown dialect format**
 
-> VSCODE plugin! 
+**Converting markdwon's special markup to HTML's element on the file.**
 
+<img src="logo.png" height="100px" style="align:center"/>
 
-While knowing that it's dangerous to make the source code public while the plugin is live, I'd still be happy if you'd vote for me on vscode!
+> &#x1F917; open-source on [GitHub](https://github.com/ZoMaii/md-maic)! | &#x1F3AF; edit file by VSCode(TS/JSON)
 
-虽然知道在插件上线的同时公开源代码很危险，但如果您能为我在vscode上投个票我还是会很开心哒！
-
-> [GITHUB](https://github.com/zomaii/md-maic) || [Website](https://maicx.net) 
-
-Converting markdwon's special markup to HTML's element on the file.
-
-USE (Text must be selected):
-1. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>,input Command: `md-df`
+USE (*Text must be selected*):
+1. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>,input Command: `md-maic`
 2. <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>A</kbd> to query edit.
 
-
+---
+**Dialect Table**
 |dialect|element|nick|
 |-|-|-|
 |H\~2\~O|sub|subscript|
 |E=mc\^2|sup|superscript|
 |==hello==|mark|mark|
 
+
+More info
 ---
-将 Markdown 的一些方言转化为 HTML标签，保证未安装拓展的阅读者能够轻松地查看它！
+将 Markdown 的一些方言转化为 HTML标签，让未安装拓展的阅读者能够轻松地查看它！
 
 支持的方言如下：
 |markdown方言|HTML元素/HTML标签|介绍|

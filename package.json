@@ -2,17 +2,18 @@
   "name": "markdown-dialect-format",
   "displayName": "md-maic",
   "description": "markdown dialect format",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher":"maictext-zomaii",
   "icon": "logo.png",
   "engines": {
     "vscode": "^1.93.0"
   },
   "categories": [
+    "Notebooks",
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.processText",
+    "onCommand:md-maic.extension.processText",
     "onLanguage:markdown"
   ],
   "repository": {
@@ -23,17 +24,28 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.processText",
+        "command": "md-maic.extension.processText",
         "title": "md-df"
       }
     ],
     "keybindings": [
       {
-        "command": "extension.processText",
+        "command": "md-maic.extension.processText",
         "key": "ctrl+shift+a",
         "when": "editorTextFocus && editorLangId == 'markdown'"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Markdown-Dialect-Format",
+      "properties": {
+        "markdownDialectFormat.useAlternateRegex": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enabling double ‘^’ notation to parse HTML element <sub>"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
