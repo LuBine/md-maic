@@ -4,7 +4,7 @@
 
 ## 报告问题
 如果你发现了一个错误，请按照以下步骤报告：
-1. 结合里程碑（版本支持时间）检查现有的 [问题](https://github.com/md-maic/issues) 以确保你的问题尚未被报告。
+1. 结合里程碑（版本支持时间）检查现有的 [问题](https://github.com/ZoMaii/md-maic/issues) 以确保你的问题尚未被报告。
 2. 提供尽可能多的细节，包括重现步骤和错误信息。
 
 ## 提交代码
@@ -28,4 +28,4 @@
   4. 说明文档的链接必须以明文方式存在，域名信用能通过 DNS、NS、SSL\TLS检测，WHOIS存在时长不得低于 **3年**。
 
 ## 联系我们
-如果你有任何问题或建议，请通过 [issue](https://github.com/md-maic/issues) 或联系邮箱与我们联系。
+如果你有任何问题或建议，请通过 [issue](https://github.com/ZoMaii/md-maic/issues) 或联系邮箱与我们联系。
