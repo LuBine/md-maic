@@ -40,14 +40,14 @@ export function activate(context: vscode.ExtensionContext) {
                     .replace(/\^(\d+)\^/g, '<sup>$1</sup>')
                     .replace(/\^([^\s]+)\^/g, '<sup>$1</sup>')
                     .replace(/~([^\s]+)~/g, '<sub>$1</sub>')
-                    .replace(/==([^\s]+)==/g, '<mark>$1</mark>');
+                    .replace(/==(.+)==/g, '<mark>$1</mark>');
                 } else {
                     processedText = selectedText
 
                     .replace(/\^(\d+)/g, '<sup>$1</sup>')
                     .replace(/\^([^\s]+)/g, '<sup>$1</sup>')
                     .replace(/~([^\s]+)~/g, '<sub>$1</sub>')
-                    .replace(/==([^\s]+)==/g, '<mark>$1</mark>');
+                    .replace(/==(.+)==/g, '<mark>$1</mark>');
                 }
 
 
