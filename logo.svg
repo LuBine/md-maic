@@ -43,7 +43,7 @@
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
 			<v:textRect cx="40.6063" cy="564.437" width="81.22" height="61.6771"/>
 			<rect x="0" y="533.599" width="81.2126" height="61.6771" class="st1"/>
-			<text x="9.94" y="569.84" class="st3" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>Dialect</text>		</g>
+			<text x="12.94" y="569.84" class="st3" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>Dialect</text>		</g>
 		<g id="shape3-7" v:mID="3" v:groupContext="shape" transform="translate(63.2976,-505.134)">
 			<title>工作表.3</title>
 			<rect v:rectContext="foreign" x="0" y="541.106" width="105.789" height="54.1701" class="st1"/>

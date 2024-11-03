@@ -1,7 +1,7 @@
 ---
 name: Question template
 about: Tell us your doubts about using
-title: "[Question]"
+title: "[Question] "
 labels: question
 assignees: ZoMaii
 

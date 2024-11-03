@@ -2,9 +2,10 @@
   "name": "markdown-dialect-format",
   "displayName": "md-maic",
   "description": "markdown dialect format",
-  "version": "0.0.3",
-  "publisher":"maictext-zomaii",
+  "version": "0.0.4",
+  "publisher": "maictext-zomaii",
   "icon": "logo.png",
+  "license":"MIT",
   "engines": {
     "vscode": "^1.93.0"
   },
@@ -13,7 +14,9 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:md-maic.extension.processText",
+    "onCommand:markdown.md-maic.processText",
+    "onCommand:markdown.md-maic.function.kbd",
+    "onCommand:markdown.md-maic.function.tag",
     "onLanguage:markdown"
   ],
   "repository": {
@@ -24,25 +27,47 @@
   "contributes": {
     "commands": [
       {
-        "command": "md-maic.extension.processText",
-        "title": "md-df"
+        "command": "markdown.md-maic.processText",
+        "title": "md-maic"
+      },
+      {
+        "command": "markdown.md-maic.function.kbd",
+        "title": "md-maic.kbd"
+      },
+      {
+        "command": "markdown.md-maic.function.tag",
+        "title": "md-maic.tag"
+      },
+      {
+        "command": "markdown.md-maic.root",
+        "title": "md-maic.root"
       }
     ],
     "keybindings": [
       {
-        "command": "md-maic.extension.processText",
+        "command": "markdown.md-maic.processText",
         "key": "ctrl+shift+a",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+      },
+      {
+        "command": "markdown.md-maic.function.kbd",
+        "key": "ctrl+alt+x",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+      },
+      {
+        "command": "markdown.md-maic.function.tag",
+        "key": "ctrl+alt+a",
         "when": "editorTextFocus && editorLangId == 'markdown'"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "Markdown-Dialect-Format",
+      "title": "[md-maic] markdownDialectFormat",
       "properties": {
-        "markdownDialectFormat.useAlternateRegex": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enabling double ‘^’ notation to parse HTML element <sub>"
+        "md-maic.useAlternateRegex": {
+          "type": "string",
+          "default": "def-a.txt",
+          "description": "Select your REGEX file, which is located in the .vscode/extension/maictext*/maic.conf/regex folder in the user's root directory."
         }
       }
     }
@@ -67,6 +92,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "markdown-it": "^14.1.0"
+    "markdown-it": "^14.1.0",
+    "node-fetch": "^3.3.2"
   }
 }
