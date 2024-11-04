@@ -1,11 +1,11 @@
 {
-  "name": "markdown-dialect-format",
+  "name": "md-maic",
   "displayName": "md-maic",
   "description": "markdown dialect format",
   "version": "0.0.4",
   "publisher": "maictext-zomaii",
   "icon": "logo.png",
-  "license":"MIT",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.93.0"
   },
@@ -25,6 +25,39 @@
   },
   "main": "./out/extension.js",
   "contributes": {
+    "localizations": [
+      {
+        "languageId": "zh-cn",
+        "languageName": "Chinese",
+        "localizedLanguageName": "中文",
+        "translations": [
+          {
+            "id": "maictext-zomaii.md-maic",
+            "path": "./lang.conf/zh-cn.json"
+          }
+        ]
+      },
+      {
+        "languageId": "en",
+        "languageName": "en",
+        "translations": [
+          {
+            "id": "maictext-zomaii.md-maic",
+            "path": "./lang.conf/en.json"
+          }
+        ]
+      },
+      {
+        "languageId": "ja",
+        "languageName": "日本語",
+        "translations": [
+          {
+            "id": "maictext-zomaii.md-maic",
+            "path": "./lang.conf/ja.json"
+          }
+        ]
+      }
+    ],
     "commands": [
       {
         "command": "markdown.md-maic.processText",
@@ -62,12 +95,20 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "[md-maic] markdownDialectFormat",
+      "title": "Markdown md-maic config",
       "properties": {
-        "md-maic.useAlternateRegex": {
+        "md-maic.appliedRegexFile": {
           "type": "string",
           "default": "def-a.txt",
-          "description": "Select your REGEX file, which is located in the .vscode/extension/maictext*/maic.conf/regex folder in the user's root directory."
+          "description": "%appliedRegexFile%"
+        },
+        "md-maic.functionLab": {
+          "type": "object",
+          "description": "%fonctionLab%",
+          "default": { "appStamp":"20241104-github"  },
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     }
@@ -93,6 +134,7 @@
   },
   "dependencies": {
     "markdown-it": "^14.1.0",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "vscode-nls": "^5.2.0"
   }
 }

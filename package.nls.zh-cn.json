@@ -1,0 +1,4 @@
+{
+    "appliedRegexFile":"在本插件根目录(maic.conf/regex)可查看解析文件，在下方填入文件名即可。\n 请勿填写绝对路径或多份文件",
+    "fonctionLab": "通过添加记录(行)，授权实验室的指定功能正常运行，具体选项请查阅 lab-readme 文件。"
+}

@@ -32,6 +32,7 @@ FIX:
  2. fix BUG '更改设置后不能对markdown方言格式化'(Maictext#03 fusama)
  3. fix BUG '切换未支持的语言后，程序功能无法正常使用 '(Maictext#04 fusama)
  4. fix BUG '方言符号 `==` 的功能无法使用！'(GitHub#4 LuBine)
+ 5. fix BUG '配置存在重复操作问题'(MaicText#04 1ovo1)
 
 NEXT:
  1. ADD Master config.

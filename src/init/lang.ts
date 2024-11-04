@@ -27,8 +27,9 @@ export function JSON_clear(){
 // 语言模块装载
 export function loadTranslations(language: string,exec?:any){
     // 默认装载语言
-    const filePath = path.join(__dirname, '../../lang.conf', `${language}.json`);
-    const eFilePath = path.join(__dirname, '../../lang.conf/en.json');
+    const dirPath = path.join(__dirname, '../../lang.conf');
+    const filePath = path.join(dirPath, `${language}.json`);
+    const eFilePath = path.join(dirPath, 'en.json');
     if(fileExists(filePath)){
         translations = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
     } else {

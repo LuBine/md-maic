@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { window,ConfigurationTarget } from 'vscode';
+import { window,ConfigurationTarget,workspace } from 'vscode';
 import { execs } from './lang';
 import * as vsconf from './vsconf';
 
@@ -79,6 +79,9 @@ async function regex_exec(name:string) {
     const filePath = path.join(__dirname,'../../maic.conf/regex');
     let regex_list=addonRead(filePath, regex);
 
+    // 避免覆盖问题，保持统一
+    workspace.getConfiguration().update('md-maic.appliedRegexFile', undefined, ConfigurationTarget.Global);
+
     if(regex_list.includes(name)){
         const spath = path.join(filePath, name);
         const regexData = fs.readFileSync(spath, 'utf-8');
@@ -90,7 +93,9 @@ async function regex_exec(name:string) {
         });
         if(select){
             // console.log(select);
-            conf.update('useAlternateRegex', select , ConfigurationTarget.Global);
+            conf.update('appliedRegexFile', select , ConfigurationTarget.Workspace);
+        }else{
+            conf.update('appliedRegexFile', regex_list[0] , ConfigurationTarget.Workspace);
         }
     }
 }

@@ -1,0 +1,4 @@
+{
+    "appliedRegexFile": "You can view the parsing files in the extension root directory (maic.conf/regex).\n Please enter the filename below. Do not enter absolute paths or multiple files.",
+    "fonctionLab": "By adding records (lines), authorize the specified functions of the laboratory to operate normally. Please refer to the lab-readme file for specific options."
+}

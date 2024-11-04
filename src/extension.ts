@@ -21,6 +21,9 @@ let regexPatterns: RegexPatterns = {};
 export function activate(context: vscode.ExtensionContext){
     // 装载语言配置
     lang.JSON_clear();
+    vscode.workspace.getConfiguration().update('md-maic.appliedRegexFile', undefined, vscode.ConfigurationTarget.Global);
+
+
     try{
         // 这段参数传递内容比较阴间，后续有待优化
         lang.loadTranslations(lang.language,qcr.addon('lang.conf',`${lang.language}.json`));
@@ -37,8 +40,9 @@ export function activate(context: vscode.ExtensionContext){
     let ItemOne = vscode.commands.registerCommand('markdown.md-maic.processText', async () => {
         // 每次激活按键刷新注册信息
         let conf = vsconf.updateConfiguration();
-        console.log(conf['useAlternateRegex']);
-        await loadRegex(conf['useAlternateRegex']);
+        console.log(conf['appliedRegexFile']);
+        await loadRegex(conf['appliedRegexFile']);
+        
 
         const editor = vscode.window.activeTextEditor;
         if (editor) {
