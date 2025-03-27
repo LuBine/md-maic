@@ -1,3 +1,0 @@
-// 此文件是负责maic.conf内容通信,还在规划中...
-
-import * as vscode from 'vscode';

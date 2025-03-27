@@ -1,5 +1,5 @@
 {
-  "name": "md-maic",
+  "name": "markdown-dialect-format",
   "displayName": "md-maic",
   "description": "markdown dialect format",
   "version": "0.0.4",
@@ -14,9 +14,6 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:markdown.md-maic.processText",
-    "onCommand:markdown.md-maic.function.kbd",
-    "onCommand:markdown.md-maic.function.tag",
     "onLanguage:markdown"
   ],
   "repository": {
@@ -32,8 +29,8 @@
         "localizedLanguageName": "中文",
         "translations": [
           {
-            "id": "maictext-zomaii.md-maic",
-            "path": "./lang.conf/zh-cn.json"
+            "id": "maictext-zomaii.markdown-dialect-format",
+            "path": "./conf/lang/zh-cn.json"
           }
         ]
       },
@@ -42,8 +39,8 @@
         "languageName": "en",
         "translations": [
           {
-            "id": "maictext-zomaii.md-maic",
-            "path": "./lang.conf/en.json"
+            "id": "maictext-zomaii.markdown-dialect-format",
+            "path": "./conf/lang/en.json"
           }
         ]
       },
@@ -52,33 +49,51 @@
         "languageName": "日本語",
         "translations": [
           {
-            "id": "maictext-zomaii.md-maic",
-            "path": "./lang.conf/ja.json"
+            "id": "maictext-zomaii.markdown-dialect-format",
+            "path": "./conf/lang/ja.json"
           }
         ]
       }
     ],
+    
     "commands": [
       {
-        "command": "markdown.md-maic.processText",
-        "title": "md-maic"
+        "command": "markdown.md-maic.main",
+        "category": "md-maic",
+        "title": "%command-default%",
+        "icon": {
+          "light": "logo.png",
+          "dark": "logo.png"
+        },
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+      },
+      {
+        "command": "markdown.md-maic.help",
+        "category": "md-maic",
+        "title": "%command-help%"
       },
       {
         "command": "markdown.md-maic.function.kbd",
-        "title": "md-maic.kbd"
+        "category": "md-maic",
+        "title": "%command-kbd%",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
       },
       {
-        "command": "markdown.md-maic.function.tag",
-        "title": "md-maic.tag"
+        "command": "markdown.md-maic.function.than",
+        "category": "md-maic",
+        "title": "%command-element%",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
       },
       {
-        "command": "markdown.md-maic.root",
-        "title": "md-maic.root"
+        "command": "markdown.md-maic.function.br",
+        "category": "md-maic",
+        "title": "%command-br%",
+        "when":"editorTextFocus && editorLangId == 'markdown'"
       }
     ],
     "keybindings": [
       {
-        "command": "markdown.md-maic.processText",
+        "command": "markdown.md-maic.main",
         "key": "ctrl+shift+a",
         "when": "editorTextFocus && editorLangId == 'markdown'"
       },
@@ -86,31 +101,28 @@
         "command": "markdown.md-maic.function.kbd",
         "key": "ctrl+alt+x",
         "when": "editorTextFocus && editorLangId == 'markdown'"
-      },
-      {
-        "command": "markdown.md-maic.function.tag",
-        "key": "ctrl+alt+a",
-        "when": "editorTextFocus && editorLangId == 'markdown'"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "Markdown md-maic config",
-      "properties": {
-        "md-maic.appliedRegexFile": {
-          "type": "string",
-          "default": "def-a.txt",
-          "description": "%appliedRegexFile%"
+      "title": "Markdown md-maic config [Maic Hub Club]",
+
+    "properties": {
+      "md-maic.RegisterManager": {
+        "type": "object",
+        "markdownDescription": "%conf-ReisterManager%",
+        "default": {
+          "appStamp": "Release 0.0.4",
+          "conf.syntax": "syntax.json",
+          "conf.cloud": "cloud.repo.json",
+          "function.kbd":"true"
         },
-        "md-maic.functionLab": {
-          "type": "object",
-          "description": "%fonctionLab%",
-          "default": { "appStamp":"20241104-github"  },
-          "additionalProperties": {
-            "type": "string"
-          }
+        "additionalProperties": {
+          "type": "string"
         }
       }
+    }
+
     }
   },
   "scripts": {

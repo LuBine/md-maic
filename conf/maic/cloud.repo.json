@@ -1,0 +1,7 @@
+{
+    "lang.net":false,
+    "lang.net.repository":"https://doc.maichc.club/!api/maic/vscode/md-maic/conf/lang/",
+    "lang.net.vscode":"https://doc.maichc.club/!api/maic/md-maic/package.nls.json",
+    "regex.net":false,
+    "regex.net.repository":"https://doc.maichc.club/!api/maic/vscode/md-maic/conf/maic/syntax.json"
+}

@@ -71,3 +71,43 @@ MDN::MOZ://a org.:: MS::mircosoft::
 
 日本::!にほん:: 日本語::!にほんご::
 
+
+# 语句块内容测试
+
+^hellocx^
+
+:asdxfa1321:
+
+$^hellocz^$
+
+`asdawd`
+
+:::x^2+2xy+y^2=(x+y)^an:::
+
+$$x^2+2xy+y^2=(x+y)^an$$
+
+$x^2+2xy+y^2=(x+y)^an$
+
+:::
+hellox^2+2xy+y^2=(x+y)^an
+:::
+
+$$
+x^2+2xy+y^2=(x+y)^an
+$$
+
+```mermaid
+---
+title: Node
+---
+flowchart TB
+
+    A["`*^Enter Chart Definition*`"] --> B(Preview)
+    B --> C{decide}
+    C --> D[Keep]
+    C --> E[Edit Definition]
+    E --> B
+    D --> F[Save Image and Code]
+    F --> B
+
+```

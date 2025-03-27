@@ -1,4 +1,9 @@
 {
-    "appliedRegexFile": "解析ファイルはプラグインのルートディレクトリ（maic.conf/regex）で確認できます。\n以下にファイル名を入力してください。絶対パスや複数のファイルを入力しないでください。",
-    "fonctionLab": "レコード（行）を追加することで、実験室の指定機能の正常な動作を許可します。具体的なオプションについては lab-readme ファイルを参照してください。"
+    "command-default": "[md-maic.main] 選択した内容をフォーマット",
+    "command-kbd": "[md-maic.kbd] <kbd>要素の追加/フォーマット",
+    "command-element": "[md-maic.than] 山括弧（<>）の追加/フォーマット",
+    "command-help": "[md-maic.help] ノートを開く",
+    "command-br": "[md-maic.br] <br> 要素の追加",
+    
+    "conf-ReisterManager": "登録管理パネル\n\n特定の値を登録してプログラムの動作を変更\n\n[ここをクリック](command:markdown.md-maic.help)してフレームワークドキュメントを表示"
 }

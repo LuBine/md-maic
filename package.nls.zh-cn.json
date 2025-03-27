@@ -1,4 +1,9 @@
 {
-    "appliedRegexFile":"在本插件根目录(maic.conf/regex)可查看解析文件，在下方填入文件名即可。\n 请勿填写绝对路径或多份文件",
-    "fonctionLab": "通过添加记录(行)，授权实验室的指定功能正常运行，具体选项请查阅 lab-readme 文件。"
+    "command-default":"[md-maic.main] 格式化选中内容",
+    "command-kbd":"[md-maic.kbd] 添加/格式化 <kbd> 元素",
+    "command-element":"[md-maic.than] 添加/格式化 大小于符号",
+    "command-help":"[md-maic.help] 打开 Notes",
+    "command-br":"[md-maic.br] 添加 <br> 换行",
+
+    "conf-ReisterManager": "Register Manager 管理面板\n\n通过注册特定值，更改程序的表现\n\n点击 [此处](command:markdown.md-maic.help) 查看框架文档。"
 }

@@ -4,7 +4,7 @@
         "${markdown.md-maic.master}": "最初に構成ファイルをロードし、その後に言語ファイルをロードしてください！",
         "${markdown.md-maic.groups}": "VSCodeがクラスタコラボレーションに参加していないことが検出されました！",
         "${markdown.md-maic.packages}": "対応するパッケージサービスがありません！",
-        "enabled": "Markdown Dialect format と拡張が起動しました！",
+        "enabled": "Markdown Dialect format が起動しました！",
         "try": "「開発者ツール」がエラーメッセージをキャッチしました！",
         "try.error": "エラーメッセージは次のとおりです："
     },

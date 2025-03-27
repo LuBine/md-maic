@@ -1,4 +1,9 @@
 {
-    "appliedRegexFile": "You can view the parsing files in the extension root directory (maic.conf/regex).\n Please enter the filename below. Do not enter absolute paths or multiple files.",
-    "fonctionLab": "By adding records (lines), authorize the specified functions of the laboratory to operate normally. Please refer to the lab-readme file for specific options."
+    "command-default": "[md-maic.main] Format selected content",
+    "command-kbd": "[md-maic.kbd] Add/Format <kbd> elements",
+    "command-element": "[md-maic.than] Add/Format angle brackets",
+    "command-help": "[md-maic.help] Open Notes",
+    "command-br":"[md-maic.br] Add <br> element",
+    
+    "conf-ReisterManager": "Register Manager control panel\n\nModify program behavior by registering specific values\n\nClick [here](command:markdown.md-maic.help) to view framework documentation."
 }
