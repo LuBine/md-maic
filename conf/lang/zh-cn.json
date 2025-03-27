@@ -1,27 +1,6 @@
 {
     "system":{
-        "${markdown.md-maic}":"主机已经规划了统一的要求！",
-        "${markdown.md-maic.master}":"请先装载配置文件后再载入语言文件！",
-        "${markdown.md-maic.groups}":"未检测到你的vscode加入集群协作！",
-        "${markdown.md-maic.packages}":"无对应的包服务！",
-        "enabled":"Markdown Dialect format 拓展已启动！",
-        "try":"'开发人员工具'已捕获错误信息!",
-        "try.error":"错误信息如下:"
-    },
-    "hot-fix":{
-        "repository":"验证仓库链中...",
-        "none":"重选 VScode 语言后生效！",
-        "error":"加载失败！",
-        "permission":[
-            "无许可链验证合法性！",
-            "请使用HTTP/GIT协议的仓库！",
-            "语言包未通过JSON格式验证！",
-            "语言包未通过编码验证！请复查charset值是否与此对应！",
-            "此语言包未通过版本支持验证！",
-            "语言包中包含了权限内容！",
-            "语言包引用了网络仓库，但当前配置已禁用网络功能！",
-            "语言包覆盖了未被注册的定义，请确保定义存在！"
-        ]
+        "enabled":"Markdown Dialect format 拓展已启动！"
     },
     "lang":{
         "default":"已使用中文作为交互语言",
@@ -30,23 +9,5 @@
     "view":{
         "none":"请选中方言文本进行处理！",
         "error":"文本处理失败。"
-    },
-    "lab":{
-        "default":"功能实验室",
-        "hot-fix":{
-            "default":"热修复",
-            "description":"启用此功能后，将会适配您组织设定的默认值与功能。在此模式下，你将会无法管辖某些插件！",
-            "none":"[提醒] 您未加入组织，默认组织为:localhost，身份为:root\n已为您配置免密登录！"
-        },
-        "package":{
-            "default":"包支持",
-            "description":"启用此功能后，将允许拓展md-maic添加新的功能支持与其对应的语言包",
-            "none":"md-maic适配多语言无需开启此功能，此语言功能仅针对附加功能！"
-        },
-        "maic-nginx":{
-            "default":"网络支持",
-            "description":"启用此功能后，我们将在线修补某些被报告的错误，而无需更新版本(如自动适配电脑所在国家的语言支持)",
-            "none":"开启热修复功能后，非 master 级别的电脑无需开启！"
-        }
     }
 }

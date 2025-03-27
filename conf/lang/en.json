@@ -1,27 +1,6 @@
 {
     "system": {
-        "${markdown.md-maic}": "The host has planned unified requirements!",
-        "${markdown.md-maic.master}": "Please load the configuration file before loading the language file!",
-        "${markdown.md-maic.groups}": "Your VSCode has not been detected as joining cluster collaboration!",
-        "${markdown.md-maic.packages}": "No corresponding package service!",
-        "enabled": "Markdown Dialect format extension has started!",
-        "try": "'Developer Tools' has captured error information!",
-        "try.error": "Error information is as follows:"
-    },
-    "hot-fix": {
-        "repository": "Verifying repository chain...",
-        "none": "Takes effect after reselecting the VSCode language!",
-        "error": "Failed to load!",
-        "permission": [
-            "No permission chain validation of legality!",
-            "Please use a repository with HTTP/GIT protocol!",
-            "Language pack did not pass JSON format validation!",
-            "Language pack did not pass encoding validation! Please check if the charset value matches!",
-            "This language pack did not pass version support validation!",
-            "The language pack contains permission content!",
-            "The language pack refers to a network repository, but the current configuration has disabled network functionality!",
-            "The language pack overrides an unregistered definition, please ensure the definition exists!"
-        ]
+        "enabled": "Markdown Dialect format extension has started!"
     },
     "lang": {
         "default": "English has been set as the interaction language",
@@ -30,23 +9,5 @@
     "view": {
         "none": "Please select dialect text for processing!",
         "error": "Text processing failed."
-    },
-    "lab": {
-        "default": "Function Lab",
-        "hot-fix": {
-            "default": "Hot Fix",
-            "description": "Enabling this feature will adapt the default values and functions set by your organization. In this mode, you will not be able to manage certain plugins!",
-            "none": "[Notice] You have not joined an organization. Default organization: localhost, role: root\nPasswordless login has been configured for you!"
-        },
-        "package": {
-            "default": "Package Support",
-            "description": "Enabling this feature will allow the md-maic extension to add new functionality support with its corresponding language packs.",
-            "none": "The md-maic is multi-language compatible without enabling this feature. This language function is for additional features only!"
-        },
-        "maic-nginx": {
-            "default": "Network Support",
-            "description": "Enabling this feature will allow us to patch some reported errors online without updating the version (e.g., automatically adapting to the language support of the country where the computer is located).",
-            "none": "After enabling the hot-fix feature, non-master-level computers do not need to enable this!"
-        }
     }
 }
