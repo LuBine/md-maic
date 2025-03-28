@@ -15,17 +15,37 @@
         }
     },
     "main": {
-        "OK": "✅ Text processing completed",
-        "NO_SELECTED_AREA": "No text selection detected. Process entire document?",
-        "NO_SELECTED_AREA_True": "Process full text",
-        "NO_SELECTED_AREA_False": "Cancel",
-        "NO_SELECTED_AREA_False_st": "Operation canceled",
-        "working": "Processing selected content...",
-        "working_item": "Working",
-        "work_ERROR": "Selection processing failed:",
-        "working_item_ERROR": "Batch edit failed. Please check console",
-        "working_in_0": "Processed",
-        "working_in_1": "changes"
+        "no_active_editor": "No active editor found",
+        "selection": {
+            "no_selected": "No text selected",
+            "select_all": "Process entire document",
+            "cancel": "Cancel",
+            "cancelled": "Operation cancelled",
+            "hint": "Please select text area to process",
+            "units": "selections"
+        },
+        "progress": {
+            "title": "Processing selections",
+            "processed": "Processed"
+        },
+        "actions": {
+            "overwrite": "Overwrite changes",
+            "cancel": "Cancel"
+        },
+        "warnings": {
+            "doc_changed": "Document has been modified externally"
+        },
+        "errors": {
+            "doc_closed": "Document has been closed",
+            "doc_switched": "Document has been moved",
+            "process_failed": "Processing failed",
+            "generic": "Operation failed",
+            "prefix": "Error"
+        },
+        "success": {
+            "processed": "✅ Text processing completed",
+            "no_changes": "😯 No changes made"
+        }
     },
     "function": {
         "NO_ENABLED": "[Command not loaded] This feature is not enabled in RegisterManager!",

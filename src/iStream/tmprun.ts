@@ -1,5 +1,5 @@
 import { DataPipelineFactory } from './interface';
-import * as templates from './template'
+import * as templates from './template';
 
 function runPipeline(factory: DataPipelineFactory) {
     // 创建组件

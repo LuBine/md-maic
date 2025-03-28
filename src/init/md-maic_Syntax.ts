@@ -25,7 +25,7 @@ export async function SyntaxMaker(){
     let CONF_NET_ADR = CONF_NET_REPO['regex.net.repository'];
     
 
-    let JSON_CONTENT = JSON.parse(fs.readFileSync(CONF_PATH,'utf-8'))
+    let JSON_CONTENT = JSON.parse(fs.readFileSync(CONF_PATH,'utf-8'));
 
     let OBJECT = await cr.SyntaxMaker_ForMat(JSON_CONTENT);
     return Object.values(OBJECT);
@@ -65,8 +65,8 @@ function makeBack(value:string,toElement:string,result:auto[],SpaceItem:string){
         // String[] 内的 BASE64 类型解码
         {
             let rule = atob(value).slice(1,-2);
-            if(rule == ''){
-                Report(`表达式存在空值`)
+            if(rule === ''){
+                Report(`表达式存在空值`);
             }
             let regex = new RegExp(rule,'g');
             const back:auto = {
@@ -84,13 +84,13 @@ function makeBack(value:string,toElement:string,result:auto[],SpaceItem:string){
                 RegExp:regex,
                 element:toElement,
                 auto:false
-            }
+            };
             result.push(back);
         }
     }
     catch(e)
     {
-        Report(`无法解码 ${SpaceItem} 的 ePATH: ${e}`)
+        Report(`无法解码 ${SpaceItem} 的 ePATH: ${e}`);
     }
 }
 
@@ -115,7 +115,7 @@ export function transSyntaxREG(SpaceItem: string,applyPack:string[] ,dictMap:any
                     makeBack(value,toElement,result,SpaceItem);
                 }
                 else{
-                    Report(`无内容：${value}`)
+                    Report(`无内容：${value}`);
                 }
             }
         } 
@@ -133,20 +133,20 @@ export function transSyntaxREG(SpaceItem: string,applyPack:string[] ,dictMap:any
                         makeBack(value,toElement,result,SpaceItem);
                     }
                     else{
-                        Report(`无内容：${value}`)
+                        Report(`无内容：${value}`);
                     }
                 }
             }
         }
         else
         {
-            logChannel.appendLine("非法的类型修改！")
+            logChannel.appendLine("非法的类型修改！");
             console.log("非法的类型修改!");
         }
         // console.log(result);
         return result;
     }else{
-        Report(`${SpaceItem} 未定义或未交付！`)
+        Report(`${SpaceItem} 未定义或未交付！`);
     }
-    return {}
+    return {};
 }

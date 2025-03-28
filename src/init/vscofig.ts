@@ -9,7 +9,7 @@ import { randomUUID } from 'crypto';
 
 export function VersionCheck(lang:any){
     let appStamp = vscode.workspace.getConfiguration('md-maic').get('RegisterManager.appStamp');
-    if(appStamp != 'Release 0.0.4'){
+    if(appStamp !== 'Release 0.0.4'){
         vscode.window.showWarningMessage(`${appStamp} ${lang.system.version.haveChange}`,`${lang.system.version.OK}`);
     }
 }
@@ -21,7 +21,7 @@ function SpaceMaker(){
         'markdown.md-maic.function.than',
         'markdown.md-maic.help',
         'markdown.md-maic.function.br'
-    ]
+    ];
 }
 
 
@@ -68,8 +68,8 @@ function makeTaskService(enbaled:any, apply:any, Task:string[], space:any):Task[
     enbaled.forEach((res: string | number) => {
         apply[res].forEach((rp: string | undefined) => {
             // console.log(rp)
-            index.push(rp)
-        })
+            index.push(rp);
+        });
     });
     
     Task.forEach(res => {
@@ -81,18 +81,18 @@ function makeTaskService(enbaled:any, apply:any, Task:string[], space:any):Task[
                 const maded:Task ={
                     RegExp:auto['RegExp'],
                     element:auto['element']
-                }
-                back.push(maded)
+                };
+                back.push(maded);
             }else{
                 const i = processAutoRules([auto]);
                 const maded:Task ={
                     RegExp:i[0]['RegExp'],
                     element:''
-                }
+                };
                 back.push(maded);
             }
-        })       
-    })
+        });
+    });
 
     // foreach 不会遇到 return 终止函数
     return back;
@@ -139,107 +139,152 @@ text: string, allowTasks: Task[], blockTasks: Task[], start: vscode.Position): P
 
 // 多选区功能操作
 async function processSelectionsWithPrompt(
-    editor: vscode.TextEditor,
     allowTasks: Task[],
     blockTasks: Task[],
-    LANGCONF:any
+    LANGCONF: any
 ): Promise<boolean> {
-    // 获取当前选区（创建副本避免污染原始数据）
-    let selections = [...editor.selections];
-    
-    // 未选中文本处理流程（添加进度提示）
-    if (selections.every(s => s.isEmpty)) {
-        const choice = await vscode.window.showWarningMessage(
-            `${LANGCONF.main.NO_SELECTED_AREA}`,
-            { modal: true }, 
-            `${LANGCONF.main.NO_SELECTED_AREA_True}`, `${LANGCONF.main.NO_SELECTED_AREA_False}`
+    // 获取当前活动编辑器
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+        vscode.window.setStatusBarMessage(
+            LANGCONF.main?.no_active_editor ?? "未找到存活的编辑器", 
+            3000
         );
-        
-        if (choice !== `${LANGCONF.main.NO_SELECTED_AREA_True}`) {
-            vscode.window.setStatusBarMessage(`${LANGCONF.main.NO_SELECTED_AREA_False_st}`, 3000);
-            return false;
-        }
-        
-        // 创建全文档选区（添加边界校验）
-        const doc = editor.document;
-        const textLength = doc.getText().length;
-        selections = [new vscode.Selection(
-            doc.positionAt(0),
-            doc.positionAt(Math.max(0, textLength - 1)) // 防止越界
-        )];
+        return false;
     }
 
-    // 准备编辑队列（优化逆序处理逻辑）
+    // 保存初始文档状态
+    const initialDoc = editor.document;
+    const initialDocVersion = initialDoc.version;
+
+    // 选区处理逻辑
+    let selections = [...editor.selections];
+    if (selections.every(s => s.isEmpty)) {
+        const choice = await vscode.window.showWarningMessage(
+            LANGCONF.main.selection?.no_selected ?? "未选中文本", 
+            { modal: true },
+            LANGCONF.main.selection?.select_all ?? "处理整个文档",
+            LANGCONF.main.selection?.cancel ?? "取消"
+        );
+
+        if (choice !== (LANGCONF.main.selection?.select_all ?? "处理整个文档")) {
+            const cancelMsg = `${LANGCONF.main.selection?.cancelled ?? "操作已取消"} ▸ ${
+                LANGCONF.main.selection?.hint ?? "请选择要处理的文本区域"
+            }`;
+            vscode.window.setStatusBarMessage(cancelMsg, 3000);
+            return false;
+        }
+
+        // 创建全文档选区
+        const fullSelection = new vscode.Selection(
+            initialDoc.positionAt(0),
+            initialDoc.positionAt(Math.max(0, initialDoc.getText().length - 1))
+        );
+        selections = [fullSelection];
+    }
+
+    // 编辑队列准备
     const edits: vscode.TextEdit[] = [];
-    
-    // 按选区起始位置逆序（更安全的处理顺序）
-    const sortedSelections = selections.sort((a, b) => 
+    const sortedSelections = [...selections].sort((a, b) => 
         b.start.compareTo(a.start)
     );
 
-    // 添加异步进度提示
-    await vscode.window.withProgress({
-        location: vscode.ProgressLocation.Notification,
-        title: `${LANGCONF.main.working}`,
-        cancellable: true
-    }, async (progress, token) => {
-        for (const [index, selection] of sortedSelections.entries()) {
-            if (token.isCancellationRequested) break;
-
-            progress.report({
-                message: `${LANGCONF.main.working_item} ${index + 1}/${sortedSelections.length}`,
-                increment: (100 / sortedSelections.length)
-            });
-
-            try {
-                const original = editor.document.getText(selection);
-                // 传入选区位置
-                const processed = await processSingleSelection(
-                    original, 
-                    allowTasks,
-                    blockTasks,
-                    selection.start
-                );
-                
-                if (processed !== original) {
-                    edits.push(vscode.TextEdit.replace(selection, processed));
-                }
-            } catch (err) {
-                console.error(`${LANGCONF.main.working_ERROR} [${selection.start.line}:${selection.start.character}]`, err);
-                vscode.window.showErrorMessage(`${LANGCONF.main.working_ERROR} ${err instanceof Error ? err.message : err}`);
-            }
-        }
-    });
-
-    // 批量原子操作（优化大文档性能）
     try {
-        const success = await editor.edit(editBuilder => {
-            edits.forEach(edit => {
-                
-                const range = new vscode.Range(
-                    editor.document.positionAt(editor.document.offsetAt(edit.range.start)),
-                    editor.document.positionAt(editor.document.offsetAt(edit.range.end))
-                );
-                editBuilder.replace(range, edit.newText);
-            });
-        }, { 
-            undoStopBefore: true,
-            undoStopAfter: false,
+        // 进度提示处理
+        await vscode.window.withProgress({
+            location: vscode.ProgressLocation.Notification,
+            title: LANGCONF.main.progress?.title ?? "正在处理选区内容",
+            cancellable: true
+        }, async (progress, token) => {
+            const chunkSize = 5;
+            for (let i = 0; i < sortedSelections.length; i += chunkSize) {
+                if (token.isCancellationRequested) {break;}
+                if (initialDoc.isClosed) {throw new Error("DOC_CLOSED");}
+
+                const chunk = sortedSelections.slice(i, i + chunkSize);
+                await Promise.all(chunk.map(async (selection) => {
+                    const original = initialDoc.getText(selection);
+                    try {
+                        const processed = await processSingleSelection(
+                            original,
+                            allowTasks,
+                            blockTasks,
+                            selection.start
+                        );
+                        if (processed !== original) {
+                            edits.push(vscode.TextEdit.replace(selection, processed));
+                        }
+                    } catch (err) {
+                        console.error(`[行号 ${selection.start.line}] ${err}`);
+                        vscode.window.showErrorMessage(
+                            `${LANGCONF.main.errors?.process_failed ?? "处理失败"} » ${
+                                (err as Error).message || "未知错误"
+                            }`
+                        );
+                    }
+                }));
+
+                // 更新进度
+                progress.report({
+                    message: `${LANGCONF.main.progress?.processed ?? "已处理"} ${
+                        Math.min(i + chunkSize, sortedSelections.length)
+                    }/${sortedSelections.length}`,
+                    increment: (chunkSize * 100) / sortedSelections.length
+                });
+            }
         });
 
-        // 添加处理结果提示
-        if (success && edits.length > 0) {
-            const msg = `${LANGCONF.main.working_in_0} ${edits.length} ${LANGCONF.main.working_in_1}`;
-            vscode.window.setStatusBarMessage(msg, 5000);
+        // 最终状态校验
+        const currentEditor = vscode.window.activeTextEditor;
+        if (!currentEditor || currentEditor.document !== initialDoc) {
+            vscode.window.showErrorMessage(
+                LANGCONF.main.errors?.doc_switched ?? "文档已被移动"
+            );
+            return false;
         }
+
+        if (currentEditor.document.version !== initialDocVersion) {
+            const overwrite = await vscode.window.showWarningMessage(
+                LANGCONF.main.warnings?.doc_changed ?? "文档已被外部修改",
+                { modal: true },
+                LANGCONF.main.actions?.overwrite ?? "覆盖更改",
+                LANGCONF.main.actions?.cancel ?? "取消"
+            );
+            if (overwrite !== LANGCONF.main.actions?.overwrite) {return false;}
+        }
+
+        // 应用编辑操作
+        const success = await currentEditor.edit(editBuilder => {
+            edits.forEach(edit => editBuilder.replace(edit.range, edit.newText));
+        }, { 
+            undoStopBefore: true,
+            undoStopAfter: false 
+        });
+
+        // 操作结果反馈
+        const statusMsg = edits.length > 0 
+            ? `${LANGCONF.main.success?.processed ?? "✅ 文本处理完成"} ${edits.length} ${
+                LANGCONF.main.selection?.units ?? "个选区"}`
+            : LANGCONF.main.success?.no_changes ?? "😯 未作任何修改";
+        
+        vscode.window.setStatusBarMessage(statusMsg, 5000);
         return success;
-    } catch (editErr) {
-        console.error(`${LANGCONF.main.working_item_ERROR}`, editErr);
-        vscode.window.showErrorMessage(`${LANGCONF.main.working_item_ERROR}`);
+
+    } catch (error) {
+        // 统一错误处理
+        const errorMap: Record<string, string> = {
+            DOC_CLOSED: LANGCONF.main.errors?.doc_closed ?? "文档已被关闭",
+            DEFAULT: LANGCONF.main.errors?.generic ?? "操作执行失败"
+        };
+
+        const message = error instanceof Error 
+            ? errorMap[error.message] || error.message
+            : errorMap.DEFAULT;
+
+        vscode.window.showErrorMessage(`${LANGCONF.main.errors?.prefix ?? "错误"} » ${message}`);
         return false;
     }
 }
-
 
 export function registerCommandMaic(context: vscode.ExtensionContext,LANGCONF:any){
     const com = SpaceMaker()[0];
@@ -302,14 +347,15 @@ export function registerCommandMaic(context: vscode.ExtensionContext,LANGCONF:an
                 return;
             }
             
-            const success = await processSelectionsWithPrompt(editor, allowTask, blockTask,LANGCONF);
-            if (success) {
-                vscode.window.setStatusBarMessage(`${LANGCONF.main.OK}`, 3000);
-            }
+            await processSelectionsWithPrompt(allowTask, blockTask,LANGCONF);
+            // const success = await processSelectionsWithPrompt(allowTask, blockTask,LANGCONF);
+            // if (success) {
+            //     vscode.window.setStatusBarMessage(`${LANGCONF.main.success.processed}`, 3000);
+            // }
 
             
         })
-    )
+    );
 }
 
 export function registerCommandKBD(context: vscode.ExtensionContext,LANGCONF:any){
@@ -348,7 +394,7 @@ export function registerCommandKBD(context: vscode.ExtensionContext,LANGCONF:any
                 }
             });
         })
-    )
+    );
 }
 
 export function registerCommandElement(context: vscode.ExtensionContext,LANGCONF:any){
@@ -393,7 +439,7 @@ export function registerCommandElement(context: vscode.ExtensionContext,LANGCONF
             });
 
         })
-    )
+    );
 }
 
 
@@ -405,7 +451,7 @@ export function registerConfigHelp(context: vscode.ExtensionContext){
             const uri = vscode.Uri.file(docPath);
             vscode.window.showTextDocument(uri);
         })
-    )
+    );
 }
 
 export function registerCommandBr(context: vscode.ExtensionContext,LANGCONF:any){
@@ -434,7 +480,7 @@ export function registerCommandBr(context: vscode.ExtensionContext,LANGCONF:any)
                 }
             });
         })
-    )
+    );
 }
 
 export function registerNone(context:vscode.ExtensionContext,COMMAND:number,LANGCONF:any){
@@ -443,7 +489,7 @@ export function registerNone(context:vscode.ExtensionContext,COMMAND:number,LANG
         vscode.commands.registerCommand(com,()=>{
             vscode.window.showErrorMessage(`${LANGCONF.function.NO_ENABLED}`);
         })
-    )
+    );
 }
 
 // 有重新加载的调用就检查应用戳是否正确

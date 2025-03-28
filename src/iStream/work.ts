@@ -1,4 +1,4 @@
-import * as oe from './interface'
+import * as oe from './interface';
 
 
 // 文件输入

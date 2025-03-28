@@ -15,17 +15,37 @@
         }
     },
     "main":{
-        "OK":"✅ 文本处理完成",
-        "NO_SELECTED_AREA":"未检测到文本选区，是否处理整个文档？",
-        "NO_SELECTED_AREA_True":"处理全文",
-        "NO_SELECTED_AREA_False":"取消",
-        "NO_SELECTED_AREA_False_st":"操作已取消",
-        "working":"处理选区内容...",
-        "working_item":"工作中",
-        "work_ERROR":"选区处理失败：",
-        "working_item_ERROR":"批量编辑失败，请检查控制台",
-        "working_in_0":"已处理",
-        "working_in_1":"处变更"
+        "no_active_editor": "未找到存活的编辑器",
+        "selection": {
+            "no_selected": "未选中文本",
+            "select_all": "处理整个文档",
+            "cancel": "取消",
+            "cancelled": "操作已取消",
+            "hint": "请选择要处理的文本区域",
+            "units": "个选区"
+        },
+        "progress": {
+            "title": "正在处理选区内容",
+            "processed": "已处理"
+        },
+        "actions": {
+            "overwrite": "覆盖更改",
+            "cancel": "取消"
+        },
+        "warnings": {
+            "doc_changed": "文档已被外部修改"
+        },
+        "errors": {
+            "doc_closed": "文档已被关闭",
+            "doc_switched": "文档已被移动",
+            "process_failed": "处理失败",
+            "generic": "操作执行失败",
+            "prefix": "错误"
+        },
+        "success": {
+            "processed": "✅ 文本处理完成",
+            "no_changes": "😯 未作任何修改"
+        }
     },
     "function":{
         "NO_ENABLED":"[命令未装载] 你并未在 RegisterManager 中启用此功能！",

@@ -2,10 +2,11 @@
   "name": "markdown-dialect-format",
   "displayName": "md-maic",
   "description": "markdown dialect format",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "maictext-zomaii",
   "icon": "logo.png",
   "license": "MIT",
+  "pricing": "Free",
   "engines": {
     "vscode": "^1.93.0"
   },

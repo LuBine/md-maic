@@ -33,7 +33,7 @@ function SpaceMaker(){
     return [
         'md-maic',
         'md-maic.RegisterManager'
-    ]
+    ];
 }
 
 export function CloudMaker(){
@@ -58,7 +58,7 @@ export let Lang = async () => {
         }
         else if(fs.existsSync(backupFilePath))
         {
-            vscode.window.showWarningMessage(`localhost haven't language file of ${vscode.env.language}!\n\n we enabled English`)
+            vscode.window.showWarningMessage(`localhost haven't language file of ${vscode.env.language}!\n\n we enabled English`);
             return JSON.parse(fs.readFileSync(backupFilePath,'utf-8'));
         }
         else if(repo['lang.net'])

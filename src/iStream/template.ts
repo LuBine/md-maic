@@ -1,5 +1,5 @@
-import * as qoe from './work'
-import * as oe from './interface'
+import * as qoe from './work';
+import * as oe from './interface';
 
 export class SecureFilePipelineFactory implements oe.DataPipelineFactory {
     createInputHandler(): oe.InputHandler {
