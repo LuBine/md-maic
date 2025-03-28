@@ -1,7 +1,7 @@
 {
     "command-default":"[md-maic.main] 格式化选中内容",
-    "command-kbd":"[md-maic.kbd] 添加/格式化 <kbd> 元素",
-    "command-element":"[md-maic.than] 添加/格式化 大小于符号",
+    "command-kbd":"[md-maic.kbd] 格式化 <kbd> 元素",
+    "command-element":"[md-maic.than] 格式化 大小于符号",
     "command-help":"[md-maic.help] 打开 Notes",
     "command-br":"[md-maic.br] 添加 <br> 换行",
 

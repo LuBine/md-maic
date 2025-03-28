@@ -1,7 +1,7 @@
 {
     "command-default": "[md-maic.main] Format selected content",
-    "command-kbd": "[md-maic.kbd] Add/Format <kbd> elements",
-    "command-element": "[md-maic.than] Add/Format angle brackets",
+    "command-kbd": "[md-maic.kbd] Format <kbd> elements",
+    "command-element": "[md-maic.than] Format angle brackets",
     "command-help": "[md-maic.help] Open Notes",
     "command-br":"[md-maic.br] Add <br> element",
     

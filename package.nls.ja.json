@@ -1,7 +1,7 @@
 {
     "command-default": "[md-maic.main] 選択した内容をフォーマット",
-    "command-kbd": "[md-maic.kbd] <kbd>要素の追加/フォーマット",
-    "command-element": "[md-maic.than] 山括弧（<>）の追加/フォーマット",
+    "command-kbd": "[md-maic.kbd] <kbd> の フォーマット",
+    "command-element": "[md-maic.than] 山括弧（<>）のフォーマット",
     "command-help": "[md-maic.help] ノートを開く",
     "command-br": "[md-maic.br] <br> 要素の追加",
     
