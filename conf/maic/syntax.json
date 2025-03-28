@@ -5,7 +5,7 @@
       "apply": { 
             "default_allowList": ["sup.RegExp.0","sup.RegExp.1","sub.RegExp.0","mark.RegExp"],
             "allowList_github": ["ruby","color-natural","color-16","title"],
-            "default_blockList": ["Latex","code","code-1"]
+            "default_blockList": ["Latex.index","code","code-1"]
         }
     },
     "space": {
@@ -53,16 +53,18 @@
         "tip":"此正则规则是泛匹配，当 打包的正则表达集包含其同类 Group 时必须放于最后一个"
       },
       "Latex": {
-        "index": ["$"],
+        "index": ["$$","$"],
         "RegExp": ["L1wkXCQoW1xzXFNdKj8pXCRcJC9n","L1wkKFteXCRdKilcJC9n"],
         "element": "",
-        "Group": "ePATH_Block"
+        "Group": "ePATH_Block",
+        "tip":"此正则规则存在处理时序问题，须先使用块！再用内嵌！"
       },
       "code":{
-        "index":["`"],
+        "index":["`","```"],
         "RegExp":["L2BgYChbXHNcU10qPylgYGAvZw==","L2AoW15gXSopYC9n"],
         "element":"",
-        "Group": "ePATH_Block"
+        "Group": "ePATH_Block",
+        "tip":"此正则规则存在处理时序问题，须先使用块！再用内嵌！"
       },
       "code-1":{
         "index":[":::"],

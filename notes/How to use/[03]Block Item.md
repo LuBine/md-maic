@@ -1,6 +1,11 @@
 ## 屏蔽基本块
 在实际的编写中，
-如果我们选中了此文本，再使用 <kbd>Ctrl</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd> (`markdown.md-maic.processText` 标识，`md-maic.main` 命令)
+如果我们选中了此文本，再使用 <kbd>Ctrl</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd> (`markdown.md-maic.main` 注册标识，`md-maic.main` 命令)
+
+> [!tip]
+> 如果希望屏蔽的内容具备 **块级元素** 和 **行内标签元素** 这两种写法表达，打包时应该遵守：**块级元素** > **行内标签元素** 的顺序！
+>
+> 如 **"$$"** 在打包时应该位列在 **"$"** 前，避免正则表达式的处理流冲突。
 ```latex
 $$
 x^2+y^2+2xy=(x+y)^2

@@ -39,9 +39,9 @@ interface Task{
 
 // index 对译
 function escapeRegexChars(source: string): string {
-    const escaped = source.replace(/([\\\[\]{}()*+?.|^$])/g, '\\$1');
-    const pattern = `([${escaped}])(.*?)\\1`;
-    return pattern
+    const escapedSource = source.split("").map(c => `\\${c}`).join("");
+    const pattern = `${escapedSource}([\\s\\S]*?)${escapedSource}`;
+    return pattern;
 }
 
 function processAutoRules(rules: auto[]): auto[] {
@@ -432,6 +432,15 @@ export function registerCommandBr(context: vscode.ExtensionContext,LANGCONF:any)
                     vscode.window.showErrorMessage('插入文本失败！');
                 }
             });
+        })
+    )
+}
+
+export function registerNone(context:vscode.ExtensionContext,COMMAND:number,LANGCONF:any){
+    const com = SpaceMaker()[COMMAND];
+    context.subscriptions.push(
+        vscode.commands.registerCommand(com,()=>{
+            vscode.window.showErrorMessage('[命令未装载] 你并未在 RegisterManager 中启用此功能！');
         })
     )
 }

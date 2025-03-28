@@ -115,7 +115,7 @@
           "appStamp": "Release 0.0.4",
           "conf.syntax": "syntax.json",
           "conf.cloud": "cloud.repo.json",
-          "function.kbd":"true"
+          "function.enabled":"kbd,than,br"
         },
         "additionalProperties": {
           "type": "string"
