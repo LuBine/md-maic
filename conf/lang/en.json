@@ -1,0 +1,42 @@
+{
+    "system": {
+        "enabled": "Markdown Dialect format extension is enabled 🥳",
+        "version": {
+            "haveChange": "This is an unverified version. Please use with caution 🙀",
+            "OK": "I understand"
+        },
+        "syntax": {
+            "Frame_ERROR": "syntax.json structure error: Please input Object!",
+            "Frame_ERROR_SET": "Syntax.json configuration error!",
+            "no_pack": " No package stored in apply!"
+        },
+        "editor": {
+            "NO_OPEN": "No editor is currently open!"
+        }
+    },
+    "main": {
+        "OK": "✅ Text processing completed",
+        "NO_SELECTED_AREA": "No text selection detected. Process entire document?",
+        "NO_SELECTED_AREA_True": "Process full text",
+        "NO_SELECTED_AREA_False": "Cancel",
+        "NO_SELECTED_AREA_False_st": "Operation canceled",
+        "working": "Processing selected content...",
+        "working_item": "Working",
+        "work_ERROR": "Selection processing failed:",
+        "working_item_ERROR": "Batch edit failed. Please check console",
+        "working_in_0": "Processed",
+        "working_in_1": "changes"
+    },
+    "function": {
+        "NO_ENABLED": "[Command not loaded] This feature is not enabled in RegisterManager!",
+        "BR": "Failed to insert text!",
+        "THAN": {
+            "NO_SELECTED": "No text selected",
+            "replace_ERROR": "Text replacement failed!"
+        },
+        "KBD": {
+            "NO_SELECTED": "No text selected",
+            "replace_ERROR": "Text replacement failed!"
+        }
+    }
+}

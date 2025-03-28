@@ -2,9 +2,10 @@
   "name": "markdown-dialect-format",
   "displayName": "md-maic",
   "description": "markdown dialect format",
-  "version": "0.0.3",
-  "publisher":"maictext-zomaii",
+  "version": "0.0.4",
+  "publisher": "maictext-zomaii",
   "icon": "logo.png",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.93.0"
   },
@@ -13,7 +14,6 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:md-maic.extension.processText",
     "onLanguage:markdown"
   ],
   "repository": {
@@ -22,29 +22,107 @@
   },
   "main": "./out/extension.js",
   "contributes": {
+    "localizations": [
+      {
+        "languageId": "zh-cn",
+        "languageName": "Chinese",
+        "localizedLanguageName": "中文",
+        "translations": [
+          {
+            "id": "maictext-zomaii.markdown-dialect-format",
+            "path": "./conf/lang/zh-cn.json"
+          }
+        ]
+      },
+      {
+        "languageId": "en",
+        "languageName": "en",
+        "translations": [
+          {
+            "id": "maictext-zomaii.markdown-dialect-format",
+            "path": "./conf/lang/en.json"
+          }
+        ]
+      },
+      {
+        "languageId": "ja",
+        "languageName": "日本語",
+        "translations": [
+          {
+            "id": "maictext-zomaii.markdown-dialect-format",
+            "path": "./conf/lang/ja.json"
+          }
+        ]
+      }
+    ],
+    
     "commands": [
       {
-        "command": "md-maic.extension.processText",
-        "title": "md-df"
+        "command": "markdown.md-maic.main",
+        "category": "md-maic",
+        "title": "%command-default%",
+        "icon": {
+          "light": "logo.png",
+          "dark": "logo.png"
+        },
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+      },
+      {
+        "command": "markdown.md-maic.help",
+        "category": "md-maic",
+        "title": "%command-help%"
+      },
+      {
+        "command": "markdown.md-maic.function.kbd",
+        "category": "md-maic",
+        "title": "%command-kbd%",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+      },
+      {
+        "command": "markdown.md-maic.function.than",
+        "category": "md-maic",
+        "title": "%command-element%",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+      },
+      {
+        "command": "markdown.md-maic.function.br",
+        "category": "md-maic",
+        "title": "%command-br%",
+        "when":"editorTextFocus && editorLangId == 'markdown'"
       }
     ],
     "keybindings": [
       {
-        "command": "md-maic.extension.processText",
+        "command": "markdown.md-maic.main",
         "key": "ctrl+shift+a",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+      },
+      {
+        "command": "markdown.md-maic.function.kbd",
+        "key": "ctrl+alt+x",
         "when": "editorTextFocus && editorLangId == 'markdown'"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "Markdown-Dialect-Format",
-      "properties": {
-        "markdownDialectFormat.useAlternateRegex": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enabling double ‘^’ notation to parse HTML element <sub>"
+      "title": "Markdown md-maic config [Maic Hub Club]",
+
+    "properties": {
+      "md-maic.RegisterManager": {
+        "type": "object",
+        "markdownDescription": "%conf-ReisterManager%",
+        "default": {
+          "appStamp": "Release 0.0.4",
+          "conf.syntax": "syntax.json",
+          "conf.cloud": "cloud.repo.json",
+          "function.enabled":"kbd,than,br"
+        },
+        "additionalProperties": {
+          "type": "string"
         }
       }
+    }
+
     }
   },
   "scripts": {
@@ -67,6 +145,8 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "markdown-it": "^14.1.0"
+    "markdown-it": "^14.1.0",
+    "node-fetch": "^3.3.2",
+    "vscode-nls": "^5.2.0"
   }
 }

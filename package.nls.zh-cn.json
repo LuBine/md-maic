@@ -1,0 +1,9 @@
+{
+    "command-default":"[md-maic.main] 格式化选中内容",
+    "command-kbd":"[md-maic.kbd] 添加/格式化 <kbd> 元素",
+    "command-element":"[md-maic.than] 添加/格式化 大小于符号",
+    "command-help":"[md-maic.help] 打开 Notes",
+    "command-br":"[md-maic.br] 添加 <br> 换行",
+
+    "conf-ReisterManager": "Register Manager 管理面板\n\n通过注册特定值，更改程序的表现\n\n点击 [此处](command:markdown.md-maic.help) 查看框架文档。"
+}

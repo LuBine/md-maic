@@ -1,0 +1,9 @@
+{
+    "command-default": "[md-maic.main] Format selected content",
+    "command-kbd": "[md-maic.kbd] Add/Format <kbd> elements",
+    "command-element": "[md-maic.than] Add/Format angle brackets",
+    "command-help": "[md-maic.help] Open Notes",
+    "command-br":"[md-maic.br] Add <br> element",
+    
+    "conf-ReisterManager": "Register Manager control panel\n\nModify program behavior by registering specific values\n\nClick [here](command:markdown.md-maic.help) to view framework documentation."
+}
