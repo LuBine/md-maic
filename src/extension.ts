@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import * as qcr from './init/vscofig'
+import * as qcr from './init/vscofig';
 import { Lang } from './init/maicofig';
 
 

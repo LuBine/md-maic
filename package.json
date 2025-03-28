@@ -22,40 +22,6 @@
   },
   "main": "./out/extension.js",
   "contributes": {
-    "localizations": [
-      {
-        "languageId": "zh-cn",
-        "languageName": "Chinese",
-        "localizedLanguageName": "中文",
-        "translations": [
-          {
-            "id": "maictext-zomaii.markdown-dialect-format",
-            "path": "./conf/lang/zh-cn.json"
-          }
-        ]
-      },
-      {
-        "languageId": "en",
-        "languageName": "en",
-        "translations": [
-          {
-            "id": "maictext-zomaii.markdown-dialect-format",
-            "path": "./conf/lang/en.json"
-          }
-        ]
-      },
-      {
-        "languageId": "ja",
-        "languageName": "日本語",
-        "translations": [
-          {
-            "id": "maictext-zomaii.markdown-dialect-format",
-            "path": "./conf/lang/ja.json"
-          }
-        ]
-      }
-    ],
-    
     "commands": [
       {
         "command": "markdown.md-maic.main",
