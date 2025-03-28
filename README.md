@@ -4,7 +4,7 @@
 <div>
 <img src="logo.png" height="150px"/><br>
 <a href="https://github.com/zomaii"><img src="https://img.shields.io/badge/@ZoMaii-black?logo=github" height="20px"/></a>&nbsp;
-<a href="https://github.com/ZoMaii/md-maic/tree/main"><img src="https://img.shields.io/badge/main-0.0.4-red?logo=git" height="20px"/></a>&nbsp;
+<a href="https://github.com/ZoMaii/md-maic/tree/main"><img src="https://img.shields.io/badge/main-0.0.6-red?logo=git" height="20px"/></a>&nbsp;
 <a href="https://marketplace.visualstudio.com/items?itemName=maictext-zomaii.markdown-dialect-format"><img src="https://img.shields.io/badge/vscode-main-颜色?logo=git" height="20px"/></a>&nbsp;
 <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/Typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white" height="20px"></a>&nbsp;
 </div>
