@@ -1,13 +1,42 @@
 {
     "system": {
-        "enabled": "Markdown Dialect format が起動しました！"
+        "enabled": "Markdown方言フォーマット拡張が起動しました🥳",
+        "version": {
+            "haveChange": "これは未検証バージョンです。使用時は注意してください🙀",
+            "OK": "承知しました"
+        },
+        "syntax": {
+            "Frame_ERROR": "syntax.json構造エラー: Objectを入力してください！",
+            "Frame_ERROR_SET": "syntax.json設定エラー！",
+            "no_pack": " applyにパッケージが保存されていません！"
+        },
+        "editor": {
+            "NO_OPEN": "使用中のエディタがありません！"
+        }
     },
-    "lang": {
-        "default": "日本語がインタラクション言語として使用されました",
-        "error": "言語を切り替えることができません"
+    "main": {
+        "OK": "✅ テキスト処理が完了しました",
+        "NO_SELECTED_AREA": "テキスト選択範囲が検出されませんでした。ドキュメント全体を処理しますか？",
+        "NO_SELECTED_AREA_True": "全文を処理",
+        "NO_SELECTED_AREA_False": "キャンセル",
+        "NO_SELECTED_AREA_False_st": "操作がキャンセルされました",
+        "working": "選択範囲を処理中...",
+        "working_item": "作業中",
+        "work_ERROR": "選択範囲処理に失敗しました:",
+        "working_item_ERROR": "一括編集に失敗しました。コンソールを確認してください",
+        "working_in_0": "処理済み",
+        "working_in_1": "箇所の変更"
     },
-    "view": {
-        "none": "方言テキストを選択して処理してください！",
-        "error": "テキスト処理に失敗しました。"
+    "function": {
+        "NO_ENABLED": "[コマンド未搭載] RegisterManagerでこの機能が有効化されていません！",
+        "BR": "テキストの挿入に失敗しました！",
+        "THAN": {
+            "NO_SELECTED": "テキストが選択されていません",
+            "replace_ERROR": "テキスト置換に失敗しました！"
+        },
+        "KBD": {
+            "NO_SELECTED": "テキストが選択されていません",
+            "replace_ERROR": "テキスト置換に失敗しました！"
+        }
     }
 }

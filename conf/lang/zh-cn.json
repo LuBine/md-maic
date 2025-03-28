@@ -1,13 +1,42 @@
 {
     "system":{
-        "enabled":"Markdown Dialect format 拓展已启动！"
+        "enabled":"Markdown Dialect format 拓展已启动🥳",
+        "version":{
+            "haveChange":"属于非验证版，请在使用时注意安全🙀",
+            "OK":"我已知晓"
+        },
+        "syntax":{
+            "Frame_ERROR":"syntax.json 结构错误，请输入 Object ！",
+            "Frame_ERROR_SET":"Syntax.json 文件配置错误！",
+            "no_pack":" 没有打包存储于 apply ！"
+        },
+        "editor":{
+            "NO_OPEN":"没有正在使用的编辑器！"
+        }
     },
-    "lang":{
-        "default":"已使用中文作为交互语言",
-        "error":"无法切换语言"
+    "main":{
+        "OK":"✅ 文本处理完成",
+        "NO_SELECTED_AREA":"未检测到文本选区，是否处理整个文档？",
+        "NO_SELECTED_AREA_True":"处理全文",
+        "NO_SELECTED_AREA_False":"取消",
+        "NO_SELECTED_AREA_False_st":"操作已取消",
+        "working":"处理选区内容...",
+        "working_item":"工作中",
+        "work_ERROR":"选区处理失败：",
+        "working_item_ERROR":"批量编辑失败，请检查控制台",
+        "working_in_0":"已处理",
+        "working_in_1":"处变更"
     },
-    "view":{
-        "none":"请选中方言文本进行处理！",
-        "error":"文本处理失败。"
+    "function":{
+        "NO_ENABLED":"[命令未装载] 你并未在 RegisterManager 中启用此功能！",
+        "BR":"插入文本失败！",
+        "THAN":{
+            "NO_SELECTED":"未选中文本",
+            "replace_ERROR":"替换文本失败！"
+        },
+        "KBD":{
+            "NO_SELECTED":"未选中文本",
+            "replace_ERROR":"替换文本失败！"
+        }
     }
 }

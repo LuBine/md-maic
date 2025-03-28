@@ -10,6 +10,8 @@ export async function activate(context: vscode.ExtensionContext){
     qcr.registerConfigHelp(context);
     // 支持语言支持
     let lang = await Lang();
+    // 进行版本检测
+    qcr.VersionCheck(lang);
     vscode.window.showInformationMessage(lang.system.enabled);
 
     // 间接解析功能注册

@@ -17,7 +17,7 @@ interface JsonObject {
   [key: string]: JsonValue;
 }
 
-export function SyntaxMaker(){
+export async function SyntaxMaker(){
     let CONF_NAME = getConfigInfo('md-maic.RegisterManager.["conf.syntax"]') ?? "syntax.json";
     let CONF_PATH = RootMaker()[3]+'\\'+CONF_NAME;
     let CONF_NET_REPO = CloudMaker();
@@ -27,7 +27,7 @@ export function SyntaxMaker(){
 
     let JSON_CONTENT = JSON.parse(fs.readFileSync(CONF_PATH,'utf-8'))
 
-    let OBJECT =  cr.SyntaxMaker_ForMat(JSON_CONTENT);
+    let OBJECT = await cr.SyntaxMaker_ForMat(JSON_CONTENT);
     return Object.values(OBJECT);
 }
 

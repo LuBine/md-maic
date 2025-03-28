@@ -3,14 +3,14 @@ import path from 'path';
 import * as vscode from 'vscode';
 import * as cr from './com_Stream';
 import { auto, mergeSyntaxRule, SyntaxMaker, transSyntaxREG } from './md-maic_Syntax';
-import { Report } from './maicofig';
+import { Report,Lang } from './maicofig';
 import { randomUUID } from 'crypto';
 
 
-function VersionCheck(){
+export function VersionCheck(lang:any){
     let appStamp = vscode.workspace.getConfiguration('md-maic').get('RegisterManager.appStamp');
     if(appStamp != 'Release 0.0.4'){
-        vscode.window.showWarningMessage(`${appStamp} 属于非验证版，请在使用时注意安全！`,"我已知晓");
+        vscode.window.showWarningMessage(`${appStamp} ${lang.system.version.haveChange}`,`${lang.system.version.OK}`);
     }
 }
 
@@ -141,7 +141,8 @@ text: string, allowTasks: Task[], blockTasks: Task[], start: vscode.Position): P
 async function processSelectionsWithPrompt(
     editor: vscode.TextEditor,
     allowTasks: Task[],
-    blockTasks: Task[]
+    blockTasks: Task[],
+    LANGCONF:any
 ): Promise<boolean> {
     // 获取当前选区（创建副本避免污染原始数据）
     let selections = [...editor.selections];
@@ -149,13 +150,13 @@ async function processSelectionsWithPrompt(
     // 未选中文本处理流程（添加进度提示）
     if (selections.every(s => s.isEmpty)) {
         const choice = await vscode.window.showWarningMessage(
-            '未检测到文本选区，是否处理整个文档？',
+            `${LANGCONF.main.NO_SELECTED_AREA}`,
             { modal: true }, 
-            '处理全文', '取消'
+            `${LANGCONF.main.NO_SELECTED_AREA_True}`, `${LANGCONF.main.NO_SELECTED_AREA_False}`
         );
         
-        if (choice !== '处理全文') {
-            vscode.window.setStatusBarMessage('操作已取消', 3000);
+        if (choice !== `${LANGCONF.main.NO_SELECTED_AREA_True}`) {
+            vscode.window.setStatusBarMessage(`${LANGCONF.main.NO_SELECTED_AREA_False_st}`, 3000);
             return false;
         }
         
@@ -179,14 +180,14 @@ async function processSelectionsWithPrompt(
     // 添加异步进度提示
     await vscode.window.withProgress({
         location: vscode.ProgressLocation.Notification,
-        title: "处理选区内容...",
+        title: `${LANGCONF.main.working}`,
         cancellable: true
     }, async (progress, token) => {
         for (const [index, selection] of sortedSelections.entries()) {
             if (token.isCancellationRequested) break;
 
             progress.report({
-                message: `处理中 ${index + 1}/${sortedSelections.length}`,
+                message: `${LANGCONF.main.working_item} ${index + 1}/${sortedSelections.length}`,
                 increment: (100 / sortedSelections.length)
             });
 
@@ -204,8 +205,8 @@ async function processSelectionsWithPrompt(
                     edits.push(vscode.TextEdit.replace(selection, processed));
                 }
             } catch (err) {
-                console.error(`选区处理失败 [${selection.start.line}:${selection.start.character}]`, err);
-                vscode.window.showErrorMessage(`处理失败：${err instanceof Error ? err.message : err}`);
+                console.error(`${LANGCONF.main.working_ERROR} [${selection.start.line}:${selection.start.character}]`, err);
+                vscode.window.showErrorMessage(`${LANGCONF.main.working_ERROR} ${err instanceof Error ? err.message : err}`);
             }
         }
     });
@@ -228,24 +229,24 @@ async function processSelectionsWithPrompt(
 
         // 添加处理结果提示
         if (success && edits.length > 0) {
-            const msg = `已处理 ${edits.length} 处变更`;
+            const msg = `${LANGCONF.main.working_in_0} ${edits.length} ${LANGCONF.main.working_in_1}`;
             vscode.window.setStatusBarMessage(msg, 5000);
         }
         return success;
     } catch (editErr) {
-        console.error('批量编辑失败', editErr);
-        vscode.window.showErrorMessage('应用修改失败，请检查控制台');
+        console.error(`${LANGCONF.main.working_item_ERROR}`, editErr);
+        vscode.window.showErrorMessage(`${LANGCONF.main.working_item_ERROR}`);
         return false;
     }
 }
 
 
-export function registerCommandMaic(context: vscode.ExtensionContext,LANGCON:any){
+export function registerCommandMaic(context: vscode.ExtensionContext,LANGCONF:any){
     const com = SpaceMaker()[0];
     const editor = vscode.window.activeTextEditor;
     context.subscriptions.push(
         vscode.commands.registerCommand(com, async () => {
-            let MySyntaxFile = SyntaxMaker();
+            let MySyntaxFile = await SyntaxMaker();
             let allow = MySyntaxFile[0]["AllowList"];
             let block = MySyntaxFile[0]["BlockList"];
             let apply = MySyntaxFile[0]["apply"];
@@ -263,7 +264,7 @@ export function registerCommandMaic(context: vscode.ExtensionContext,LANGCON:any
                     WorkTask_allow=mergeSyntaxRule(WorkTask_allow,apply[app]);
                 }else{
                     // Report 会终止后续程序的继续运行
-                    Report(`[AllowList] ${app} 没有打包存储于 apply ！`);
+                    Report(`[AllowList] ${app} ${LANGCONF.system.syntax.no_pack}`);
                 }
             });
             block.forEach((app:string) => {
@@ -271,7 +272,7 @@ export function registerCommandMaic(context: vscode.ExtensionContext,LANGCON:any
                     WorkTask_block=mergeSyntaxRule(WorkTask_block,apply[app]);
                 }else{
                     // Report 会终止后续程序的继续运行
-                    Report(`[BlockList] ${app} 没有打包存储于 apply ！`);
+                    Report(`[BlockList] ${app} ${LANGCONF.system.syntax.no_pack}`);
                 }
             });
 
@@ -297,13 +298,13 @@ export function registerCommandMaic(context: vscode.ExtensionContext,LANGCON:any
 
 
             if (!editor) {
-                vscode.window.showErrorMessage('没有打开的编辑器！');
+                vscode.window.showErrorMessage(`${LANGCONF.system.editor.NO_OPEN}`);
                 return;
             }
             
-            const success = await processSelectionsWithPrompt(editor, allowTask, blockTask);
+            const success = await processSelectionsWithPrompt(editor, allowTask, blockTask,LANGCONF);
             if (success) {
-                vscode.window.setStatusBarMessage('✅ 文本处理完成', 3000);
+                vscode.window.setStatusBarMessage(`${LANGCONF.main.OK}`, 3000);
             }
 
             
@@ -317,7 +318,7 @@ export function registerCommandKBD(context: vscode.ExtensionContext,LANGCONF:any
     context.subscriptions.push(
         vscode.commands.registerCommand(com, () => {
             if (!editor) {
-                vscode.window.showErrorMessage('没有打开的编辑器！');
+                vscode.window.showErrorMessage(`${LANGCONF.system.editor.NO_OPEN}`);
                 return;
             }
             const document = editor.document;
@@ -325,7 +326,7 @@ export function registerCommandKBD(context: vscode.ExtensionContext,LANGCONF:any
             
             // 检查所有选区是否都为空
             if (selections.every(selection => document.getText(selection) === '')) {
-                vscode.window.showInformationMessage("请选中需要转换的文本");
+                vscode.window.showInformationMessage(`${LANGCONF.function.KBD.NO_SELECTED}`);
                 return;
             }
             
@@ -343,7 +344,7 @@ export function registerCommandKBD(context: vscode.ExtensionContext,LANGCONF:any
                 });
             }).then(success => {
                 if (!success) {
-                    vscode.window.showErrorMessage("替换失败");
+                    vscode.window.showErrorMessage(`${LANGCONF.function.KBD.replace_ERROR}`);
                 }
             });
         })
@@ -357,7 +358,7 @@ export function registerCommandElement(context: vscode.ExtensionContext,LANGCONF
         vscode.commands.registerCommand(com, () => {
 
             if (!editor) {
-                vscode.window.showErrorMessage('没有打开的编辑器！');
+                vscode.window.showErrorMessage(`${LANGCONF.system.editor.NO_OPEN}`);
                 return;
             }
             
@@ -366,7 +367,7 @@ export function registerCommandElement(context: vscode.ExtensionContext,LANGCONF
             
             // 检查所有选区是否都为空
             if (selections.every(selection => document.getText(selection) === '')) {
-                vscode.window.showInformationMessage("请选中方言文本");
+                vscode.window.showInformationMessage(`${LANGCONF.function.THAN.NO_SELECTED}`);
                 return;
             }
             
@@ -387,7 +388,7 @@ export function registerCommandElement(context: vscode.ExtensionContext,LANGCONF
                 });
             }).then(success => {
                 if (!success) {
-                    vscode.window.showErrorMessage("替换失败");
+                    vscode.window.showErrorMessage(`${LANGCONF.function.THAN.replace_ERROR}`);
                 }
             });
 
@@ -413,7 +414,7 @@ export function registerCommandBr(context: vscode.ExtensionContext,LANGCONF:any)
     context.subscriptions.push(
         vscode.commands.registerCommand(com, () => {
             if (!editor) {
-                vscode.window.showErrorMessage('没有打开的编辑器！');
+                vscode.window.showErrorMessage(`${LANGCONF.system.editor.NO_OPEN}`);
                 return;
             }
             const newSelections = editor.selections.map(selection => {
@@ -429,7 +430,7 @@ export function registerCommandBr(context: vscode.ExtensionContext,LANGCONF:any)
                 });
             }).then(success => {
                 if (!success) {
-                    vscode.window.showErrorMessage('插入文本失败！');
+                    vscode.window.showErrorMessage(`${LANGCONF.function.BR}`);
                 }
             });
         })
@@ -440,10 +441,10 @@ export function registerNone(context:vscode.ExtensionContext,COMMAND:number,LANG
     const com = SpaceMaker()[COMMAND];
     context.subscriptions.push(
         vscode.commands.registerCommand(com,()=>{
-            vscode.window.showErrorMessage('[命令未装载] 你并未在 RegisterManager 中启用此功能！');
+            vscode.window.showErrorMessage(`${LANGCONF.function.NO_ENABLED}`);
         })
     )
 }
 
 // 有重新加载的调用就检查应用戳是否正确
-VersionCheck();
+// VersionCheck();

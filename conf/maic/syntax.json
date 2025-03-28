@@ -12,13 +12,13 @@
       "sup": {
         "index": null,
         "RegExp": ["L1xeKFxkKykvZw==","L1xeKFteXHNdKykvZw==" , "L1xeKC9kKylcXi9n"],
-        "element": "<sup>$1<sup>",
+        "element": "<sup>$1</sup>",
         "Group":"FreeStyle"
       },
       "sub": {
         "index": null,
         "RegExp": ["L34oW15cc10rKX4vZw=="],
-        "element": "<sub>$1<sub>",
+        "element": "<sub>$1</sub>",
         "Group": "FreeStyle"
       },
       "mark": {

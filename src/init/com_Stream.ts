@@ -2,7 +2,7 @@
  * ePATH 解析处理流
 */
 
-import { logChannel } from "./maicofig";
+import { Lang,logChannel } from "./maicofig";
 
 interface GConfigPath {
     whois: string;
@@ -121,13 +121,14 @@ function checkSyntax(obj: any): obj is Syntax {
     }
 }
 
-export function SyntaxMaker_ForMat(JSONText: unknown): Syntax {
+export async function SyntaxMaker_ForMat(JSONText: unknown): Promise<Syntax> {
+    const LANGCONF = await Lang();
     if (typeof JSONText !== 'object' || JSONText === null) {
-      throw new Error('syntax.json 结构错误，请输入 Object ！');
+      throw new Error(`${LANGCONF.system.syntax.Frame_ERROR}`);
     }
   
     if (!checkSyntax(JSONText)) {
-      throw new Error('Syntax.json 文件配置错误！');
+      throw new Error(`${LANGCONF.system.syntax.Frame_ERROR_SET}`);
     }
   
     const validSyntax = JSONText as Syntax;
