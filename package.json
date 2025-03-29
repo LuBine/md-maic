@@ -82,6 +82,7 @@
           "appStamp": "Release 0.0.4",
           "conf.syntax": "syntax.json",
           "conf.cloud": "cloud.repo.json",
+          "conf.enabled.show": "status",
           "function.enabled":"kbd,than,br"
         },
         "additionalProperties": {

@@ -1,7 +1,7 @@
 # VScode.md-maic NOTES 帮助
 
 
-ℹ️  ***适配 Release 0.0.4 版本，GITHUB 保持更新***
+ℹ️  ***适配 Release 0.0.7 版本，GITHUB 
 
 
 根据 MaicWorkbench 的相关定义进行的文档配置，请搭配专业的 Markdown 阅读器以确保阅读便捷！

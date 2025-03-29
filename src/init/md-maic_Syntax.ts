@@ -2,7 +2,6 @@ import * as cr from './com_Stream';
 import fs from 'fs';
 import { CloudMaker, logChannel, Report, RootMaker } from './maicofig';
 import { getConfigInfo } from './vscofig';
-import { window } from 'vscode';
 
 export interface auto {
     RegExp: RegExp,

@@ -12,7 +12,18 @@ export async function activate(context: vscode.ExtensionContext){
     let lang = await Lang();
     // 进行版本检测
     qcr.VersionCheck(lang);
-    vscode.window.showInformationMessage(lang.system.enabled);
+    const RM_RUN_SHOW = qcr.getConfigInfo('md-maic.RegisterManager.["conf.enabled.show"]');
+    // 告知静默
+    switch(RM_RUN_SHOW){
+        case 'show':
+            vscode.window.showInformationMessage(lang.system.enabled);
+            break;
+        case 'status':
+            vscode.window.setStatusBarMessage(lang.system.enabled, 3000);
+            break;
+        default:
+            break;
+    }
 
     // 间接解析功能注册
     qcr.registerCommandMaic(context,lang);
